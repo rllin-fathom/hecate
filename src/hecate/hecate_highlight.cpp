@@ -44,7 +44,7 @@ void detect_highlight_shots( hecate_params& opt, hecate::video_metadata& meta,
     max_shot_len = round((1.0+addrate_max) * min_shot_len);
     //min_num_shot = ceil( opt.lmov / 3.0 );
     //min_num_shot = ceil( opt.lmov / 2.0 );
-    min_num_shot = 30;
+    min_num_shot = 3;
     if( opt.debug ) {
       printf("detect_highlight_shots(): "
              "min_shot_len=%d, max_shot_len=%d, min_num_shot=%d, "
@@ -181,8 +181,8 @@ void detect_highlight_shots( hecate_params& opt, hecate::video_metadata& meta,
   Mat km_lbl; // integer row vector; stores cluster IDs for every sample.
   Mat km_ctr; // one row per each cluster center.
   int km_k = min(maxK, min((int)v_candidates.size(), max(minK, min_num_shot)));
-  //hecate::perform_kmeans( km_data, km_lbl, km_ctr, km_k, 5 );
-  hecate::perform_kmeans( km_data, km_lbl, km_ctr, km_k, 10 );
+  hecate::perform_kmeans( km_data, km_lbl, km_ctr, km_k, 5 );
+  //hecate::perform_kmeans( km_data, km_lbl, km_ctr, km_k, 10 );
   
   // measure cluster size
   vector<int> v_shotlen;
