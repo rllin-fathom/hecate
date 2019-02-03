@@ -273,7 +273,7 @@ void detect_highlight_shots( hecate_params& opt, hecate::video_metadata& meta,
   if( opt.info_score) {
     printf("scores: ");
     for(size_t i=0; i<v_shot_score.size(); i++) {
-      printf("(%d, %d, %f)", v_candidates[i].start, v_candidates[i].end, v_shot_score[i]);
+      printf("(%d, %d, %d, %f)", i, v_candidates[i].start, v_candidates[i].end, v_shot_score[i]);
       if( i<v_shot_score.size()-1 )
         printf(",");
     }
