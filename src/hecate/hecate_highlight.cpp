@@ -40,11 +40,11 @@ void detect_highlight_shots( hecate_params& opt, hecate::video_metadata& meta,
   if( opt.mov ) {
     double addrate_min = 0.5 * sqrt(max(0.0,(double)opt.lmov-15.0)/45.0);
     double addrate_max = sqrt(max(0.0,(double)opt.lmov-15.0)/45.0);
-    min_shot_len = floor((3.0+addrate_min) * meta.fps / opt.step_sz);
-    max_shot_len = round((1.0+addrate_max) * min_shot_len);
-    //min_num_shot = ceil( opt.lmov / 3.0 );
-    //min_num_shot = ceil( opt.lmov / 2.0 );
-    min_num_shot = 3;
+    //min_shot_len = floor((3.0+addrate_min) * meta.fps / opt.step_sz);
+    //max_shot_len = round((1.0+addrate_max) * min_shot_len);
+    min_shot_len = floor((1.0+addrate_min) * meta.fps / opt.step_sz);
+    max_shot_len = round((2.0+addrate_max) * min_shot_len);
+    min_num_shot = ceil( opt.lmov / 3.0 );
     if( opt.debug ) {
       printf("detect_highlight_shots(): "
              "min_shot_len=%d, max_shot_len=%d, min_num_shot=%d, "
