@@ -108,8 +108,8 @@ struct hecate_params {
   fade(false),
   debug(false),
   info_score(false),
-  no_write(false)
-  display(false),
+  no_write(false),
+  display(false)
   {};
 };
 
@@ -183,7 +183,7 @@ inline void hecate_parse_params(int argc, char** argv, hecate_params& opt)
       case 'F': opt.fade             = true; break;
       case 'D': opt.debug            = true; break;
       case 'C': opt.display          = true; break;
-      case 'I': opt.print_info_score = true; break;
+      case 'I': opt.info_score       = true; break;
       case 'N': opt.no_write         = true; break;
     }
   }
