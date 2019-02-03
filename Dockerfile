@@ -1,4 +1,3 @@
-#FROM valian/docker-python-opencv-ffmpeg
 FROM m03geek/ffmpeg-opencv:stretch
 
 RUN apt-get update && apt-get -yqq install wget unzip make g++

@@ -270,6 +270,16 @@ void detect_highlight_shots( hecate_params& opt, hecate::video_metadata& meta,
   }
   
   
+  if( opt.info_score) {
+    printf("scores: ");
+    for(size_t i=0; i<v_shot_score.size(); i++) {
+      printf("%d", v_shot_score[i]);
+      if( i<v_shot_score.size()-1 )
+        printf(",");
+    }
+    printf("\n");
+  }
+
   ////////////////////////////////////////////////////////////////////////////
   //
   // Shot selection
@@ -490,7 +500,7 @@ void generate_highlight_clips( hecate_params& opt, vector<hecate::Range>& v_high
     string duration = hecate::second2string( sec_duration, "hh:mm:ss.mss" );
     
     // --------------------- VIDEO CLIP GENERATOR ---------------------
-    if( opt.mov )
+    if( opt.mov && !opt.no_write)
     {
       // Crop video segment
       sprintf( outfile, "%s/%s%s_seg%03d.mp4",
@@ -562,7 +572,7 @@ void generate_highlight_clips( hecate_params& opt, vector<hecate::Range>& v_high
   // Close filelist
   fclose( ptr_filelist );
   
-  if( opt.mov )
+  if( opt.mov && !opt.no_write)
   {
     // Concatenate segments
     sprintf( outfile, "%s/%s_sum.mp4",
@@ -570,7 +580,7 @@ void generate_highlight_clips( hecate_params& opt, vector<hecate::Range>& v_high
     hecate::ffmpeg_video_concat( filelist, outfile );
   }
   
-  if( opt.gif && opt.gifsum )
+  if( opt.gif && opt.gifsum && !opt.no_write)
   {
     // Concatenate segments
     sprintf( outfile, "%s/%s%s_segsum.mp4",

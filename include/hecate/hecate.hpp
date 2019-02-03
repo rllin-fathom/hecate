@@ -77,6 +77,8 @@ struct hecate_params {
   bool gfl;             // run group-fused lasso as part of shot segmentation
   bool fade;            // disable fade-in/out during shot transition
   bool debug;
+  bool info_score;      // print score for each shot range
+  bool no_write;        // only scene anlysis, don't write
   bool display;
   
   hecate_params():
@@ -105,7 +107,9 @@ struct hecate_params {
   gfl(false),
   fade(false),
   debug(false),
-  display(false)
+  info_score(false),
+  no_write(false)
+  display(false),
   {};
 };
 
@@ -138,6 +142,8 @@ inline void hecate_parse_params(int argc, char** argv, hecate_params& opt)
     {"gfl",               no_argument, 0, 'B'},
     {"fade",              no_argument, 0, 'F'},
     {"debug",             no_argument, 0, 'D'},
+    {"print_score_info",  no_argument, 0, 'I'},
+    {"no_write",          no_argument, 0, 'N'},
     {"display",           no_argument, 0, 'C'},
     {0,0,0,0}
   };
@@ -177,6 +183,8 @@ inline void hecate_parse_params(int argc, char** argv, hecate_params& opt)
       case 'F': opt.fade             = true; break;
       case 'D': opt.debug            = true; break;
       case 'C': opt.display          = true; break;
+      case 'I': opt.print_info_score = true; break;
+      case 'N': opt.no_write         = true; break;
     }
   }
   
@@ -218,6 +226,8 @@ inline void hecate_usage()
   printf("  --generate_gifall               Generate all possible animated GIFs\n");
   printf("  --print_shot_info               Print valid shot ranges\n");
   printf("  --print_keyfrm_info             Print keyframe indices\n");
+  printf("  --print_score_info              Print score info\n");
+  printf("  --no_write                      Only analysis\n");
   
   exit(-1);
 }
