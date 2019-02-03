@@ -182,7 +182,7 @@ void detect_highlight_shots( hecate_params& opt, hecate::video_metadata& meta,
   Mat km_ctr; // one row per each cluster center.
   int km_k = min(maxK, min((int)v_candidates.size(), max(minK, min_num_shot)));
   //hecate::perform_kmeans( km_data, km_lbl, km_ctr, km_k, 5 );
-  hecate::perform_kmeans( km_data, km_lbl, km_ctr, km_k, 10 );
+  hecate::perform_kmeans( km_data, km_lbl, km_ctr, km_k, 50 );
   
   // measure cluster size
   vector<int> v_shotlen;
